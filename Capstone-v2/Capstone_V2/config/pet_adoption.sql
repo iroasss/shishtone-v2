@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2024 at 02:54 AM
+-- Generation Time: Aug 14, 2024 at 03:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `role`, `password`, `re_password`) VALUES
-(1, 'Admin', '0', '$2y$10$FlVmqZ3G.d7MViq7WpmFbueDgNlh3skSznqE0WeZrhLS/saanc7Qq', '');
+(1, 'Admin', 'Admin', '$2y$10$lpRSccHFLLTR0vUfiDU7pO7od9EbafVVR9hw3p/AdblWB0YvJ3E36', '');
 
 -- --------------------------------------------------------
 
@@ -58,18 +58,25 @@ CREATE TABLE `pet_list` (
   `distinctive` text NOT NULL,
   `medical_history` text NOT NULL,
   `pet_description` text NOT NULL,
+  `location` text NOT NULL,
   `pet_image` varchar(255) NOT NULL,
-  `pet_images` text DEFAULT NULL
+  `pet_images` text DEFAULT NULL,
+  `is_archived` tinyint(1) NOT NULL,
+  `archived_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pet_list`
 --
 
-INSERT INTO `pet_list` (`id`, `pet_name`, `pet_age`, `pet_species`, `pet_breed`, `pet_color`, `distinctive`, `medical_history`, `pet_description`, `pet_image`, `pet_images`) VALUES
-(1, 'Shadow', 3, 'Domestic  Shorthair Cat', 'non', 'Black with a   few white patches', 'Missing part of the left   ear, possibly due to a   past injury or ear tipping', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\r\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\r\nnisi ut aliquip ex ea commodo consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\r\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\r\nnisi ut aliquip ex ea commodo consequat.', '', NULL),
-(2, 'Oreo', 2, 'hulaan mo', 'hehe', 'di ko din alam', 'ewan tignan mo na lng ', 'tsk ', 'dsf', '', NULL),
-(3, 'ashes', 2, 'Dog', 'ds', 'sd', 'fs', 'sd', 'f', '', '[]');
+INSERT INTO `pet_list` (`id`, `pet_name`, `pet_age`, `pet_species`, `pet_breed`, `pet_color`, `distinctive`, `medical_history`, `pet_description`, `location`, `pet_image`, `pet_images`, `is_archived`, `archived_date`) VALUES
+(1, 'Shadow', 3, 'Domestic  Shorthair Cat', 'non', 'Black with a   few white patches', 'Missing part of the left   ear, possibly due to a   past injury or ear tipping', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\r\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\r\nnisi ut aliquip ex ea commodo consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\r\nenim ad minim veniam, quis nostrud exercitation ullamco laboris\r\nnisi ut aliquip ex ea commodo consequat.', '', '', NULL, 0, NULL),
+(2, 'Oreo', 2, 'hulaan mo', 'hehe', 'di ko din alam', 'ewan tignan mo na lng ', 'tsk ', 'dsf', '', '', NULL, 0, NULL),
+(3, 'ashes', 2, 'Dog', 'ds', 'sd', 'fs', 'sd', 'f', '', '', '[]', 0, NULL),
+(4, 'sds', 2, 'sad', 'asd', 'asd', 'fsad', 'asfagsdgh', 'asdfghasd', '', '', '[]', 0, NULL),
+(5, 'af', 2, 'safasfg', 'a', 'a', 'g', 'ffs', 'ff', '', '', '[]', 0, NULL),
+(6, 'sad', 1, 'asd', 'hahh', 'seg', 'hahah', 'hahassd', 'gah', 'sss', '', '[]', 1, '2024-08-14 18:42:47'),
+(7, 'asd', 2, 'asdasd', 'asd', 'asd', 'g', 'sdg', 'sdg', 'sdgsdgsdgsg', '', '[]', 1, '2024-08-14 18:43:15');
 
 --
 -- Indexes for dumped tables
@@ -101,7 +108,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `pet_list`
 --
 ALTER TABLE `pet_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
