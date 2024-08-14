@@ -77,11 +77,12 @@ $result = $conn->query($sql);
                     echo "<p data-field='distinctive' style='display:none'>" . $row['distinctive'] . "</p>";
                     echo "<p data-field='medical_history' style='display:none'>" . $row['medical_history'] . "</p>";
                     echo "<p data-field='description' style='display:none'>" . $row['pet_description'] . "</p>";
+                    echo "<p data-field='location' style='display:none'>" . $row['location'] . "</p>";
                     echo "<p data-field='image' style='display:none'><a href='" . $row['pet_image'] . "' target='_blank'>View Image</a></p>";
                     echo "</div>";
                 }
             } else {
-                echo "<tr><td colspan='11'>No data found</td></tr>";
+                echo "<tr><td colspan='12'>No data found</td></tr>";
             }
             ?>
             <!-- Details Modal -->

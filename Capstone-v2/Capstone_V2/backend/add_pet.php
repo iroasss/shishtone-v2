@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $distinctiveFeatures = $_POST['distinctiveFeatures'];
     $medicalHistory = $_POST['medicalHistory'];
     $petDescription = $_POST['petDescription'];
+    $location = $_POST['location'];
     $petImages = [];
 
     // Handle file upload
@@ -42,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->query("ALTER TABLE pet_list ADD COLUMN pet_images TEXT");
     }
 
-    $sql = "INSERT INTO pet_list (pet_name, pet_age, pet_species, pet_breed, pet_color, distinctive, medical_history, pet_description, pet_images)
-            VALUES ('$petName', '$petAge', '$petSpecies', '$petBreed', '$petColor', '$distinctiveFeatures', '$medicalHistory', '$petDescription', '$petImagesJson')";
+    $sql = "INSERT INTO pet_list (pet_name, pet_age, pet_species, pet_breed, pet_color, distinctive, medical_history, pet_description, location, pet_images)
+            VALUES ('$petName', '$petAge', '$petSpecies', '$petBreed', '$petColor', '$distinctiveFeatures', '$medicalHistory', '$petDescription', '$location, '$petImagesJson')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: ../admin_facilitator/pet_list.php?success=Done submitting the form!");

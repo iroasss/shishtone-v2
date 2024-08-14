@@ -95,6 +95,7 @@ function viewMore(id) {
     var distinctive = petDetails.querySelector('p[data-field="distinctive"]').innerText;
     var medicalHistory = petDetails.querySelector('p[data-field="medical_history"]').innerText;
     var description = petDetails.querySelector('p[data-field="description"]').innerText;
+    var location = petDetails.querySelector('p[data-field="location"]').innerText;
     var image = petDetails.querySelector('p[data-field="image"]').innerHTML;
 
     var modalContent = document.getElementById('modalContent');
@@ -107,6 +108,7 @@ function viewMore(id) {
         <p><strong>Distinctive Features:</strong> ${distinctive}</p>
         <p><strong>Medical History:</strong> ${medicalHistory}</p>
         <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Location:</strong> ${location}</p>
         <p><strong>Image:</strong> ${image}</p>
     `;
 
@@ -124,6 +126,8 @@ window.onclick = function(event) {
         modal.style.display = 'none';
     }
 }
+// END OF VIEW MORE DETAILS FOR PET ADDING 
+
 
 // PREVIEW OF THE IMAGE IN ADDING PET
 // AND LIMIT UPLOAD IN 4
@@ -155,3 +159,30 @@ function previewImages(event) {
         reader.readAsDataURL(file);
     }
 }
+
+// END PREVIEW OF THE IMAGE IN ADDING PET
+
+// ARCHIVE BUTTON
+
+function archivePet(petId) {
+    if (confirm("Are you sure you want to archive this pet?")) {
+        window.location.href = "pet_list.php?archive_id=" + petId;
+    }
+}
+
+
+function openArchivedModal() {
+    document.getElementById("archivedModal").style.display = "block";
+}
+
+function closeArchivedModal() {
+    document.getElementById("archivedModal").style.display = "none";
+}
+
+function unarchivePet(id) {
+    if (confirm("Are you sure you want to unarchive this pet?")) {
+        window.location.href = "pet_list.php?unarchive_id=" + id;
+    }
+}
+
+// END OF ARCHIVE BUTTON

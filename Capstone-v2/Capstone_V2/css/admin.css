@@ -632,3 +632,16 @@ form legend {
 }
 
 /* ---- END OF Exit button FOR MODAL IN VIEW MORE  ---- */
+
+/* ---- START OF THE ARCHIVED BUTTONS ---- */
+
+.action-button.unarchive {
+  background-color: #28a745;
+  color: white;
+}
+
+.action-button.unarchive:hover {
+  background-color: #218838;
+}
+
+/* ---- END OF THE ARCHIVED BUTTONS ---- */

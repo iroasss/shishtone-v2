@@ -2,22 +2,32 @@
 include("header.php");
 include("../config/config.php");
 
-// Set default limit and get value from GET parameter if available
-$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 20;
+// Archive Pet Functionality
+if (isset($_GET['archive_id'])) {
+    $archive_id = intval($_GET['archive_id']);
+    $conn->query("UPDATE pet_list SET is_archived = 1, archived_date = NOW() WHERE id = $archive_id");
+    header("Location: pet_list.php");
+    exit();
+}
 
-// Get the current page number from the GET parameter, default to 1 if not set
+// Unarchive Pet Functionality
+if (isset($_GET['unarchive_id'])) {
+    $unarchive_id = intval($_GET['unarchive_id']);
+    $conn->query("UPDATE pet_list SET is_archived = 0, archived_date = NULL WHERE id = $unarchive_id");
+    header("Location: pet_list.php");
+    exit();
+}
+
+$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 20;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-// Calculate the starting record for the query
 $offset = ($page - 1) * $limit;
-
-// Get the total number of records for pagination
-$total_result = $conn->query("SELECT COUNT(*) AS total FROM pet_list");
+$total_result = $conn->query("SELECT COUNT(*) AS total FROM pet_list WHERE is_archived = 0");
 $total_rows = $total_result->fetch_assoc()['total'];
 $total_pages = ceil($total_rows / $limit);
 
 // Execute SQL query to retrieve pet list data with limit and offset
-$sql = "SELECT * FROM pet_list LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM pet_list WHERE is_archived = 0 LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 ?>
 <div class="table-container">
@@ -39,6 +49,7 @@ $result = $conn->query($sql);
                 <input type="text" class="search-input" placeholder="Search">
                 <button class="search-button"><i class="fa fa-search"></i></button>
                 <button class="action-button add" onclick="openModal()"><i class="fa fa-plus"></i> Add</button>
+                <button class="action-button archive" onclick="openArchivedModal()"><i class="fa fa-archive"></i> View Archived Pets</button>
             </div>
         </div>
     </div>
@@ -80,11 +91,12 @@ $result = $conn->query($sql);
                     echo "<p data-field='distinctive' style='display:none'>" . $row['distinctive'] . "</p>";
                     echo "<p data-field='medical_history' style='display:none'>" . $row['medical_history'] . "</p>";
                     echo "<p data-field='description' style='display:none'>" . $row['pet_description'] . "</p>";
+                    echo "<p data-field='location' style='display:none'>" . $row['location'] . "</p>";
                     echo "<p data-field='image' style='display:none'><a href='" . $row['pet_image'] . "' target='_blank'>View Image</a></p>";
                     echo "</div>";
                 }
             } else {
-                echo "<tr><td colspan='11'>No data found</td></tr>";
+                echo "<tr><td colspan='12'>No data found</td></tr>";
             }
             ?>
             <!-- Details Modal -->
@@ -94,10 +106,6 @@ $result = $conn->query($sql);
                     <div id="modalContent"></div>
                 </div>
             </div>
-
-
-
-
         </tbody>
     </table>
     <div class="pagination">
@@ -116,7 +124,6 @@ $result = $conn->query($sql);
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Add New Pet</h2>
         <form action="../backend/add_pet.php" method="post" enctype="multipart/form-data">
-
             <label for="petName">Pet Name</label>
             <input type="text" id="petName" name="petName" required pattern="[A-Za-z\s]+" title="Pet name should only contain letters and spaces.">
 
@@ -141,12 +148,76 @@ $result = $conn->query($sql);
             <label for="petDescription">Pet Description</label>
             <textarea id="petDescription" name="petDescription" required></textarea>
 
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required pattern="[A-Za-z\s]+" title="Location should only contain letters and spaces.">
+
             <label for="petImages">Images (max 4)</label>
             <input type="file" id="petImages" name="petImages[]" accept="image/*" multiple onchange="previewImages(event)">
             <div id="imagePreviewContainer" style="margin-top:10px; display: flex; flex-wrap: wrap;"></div>
 
             <button type="submit" class="save-button">Save</button>
         </form>
+    </div>
+</div>
+
+<!-- Archived Pets Modal -->
+<div id="archivedModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeArchivedModal()">&times;</span>
+        <h2>Archived Pets</h2>
+
+        <!-- Search and Sort Form -->
+        <form method="get" action="" class="search-sort-form">
+            <div class="search-container">
+                <input type="text" name="search" class="search-input" placeholder="Search archived pets..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <button type="submit" class="search-button"><i class="fa fa-search"></i> Search</button>
+            </div>
+            <div class="sort-container">
+                <label for="sortDate">Sort by Date Archived:</label>
+                <select id="sortDate" name="sortDate" class="sort-select" onchange="this.form.submit()">
+                    <option value="asc" <?php echo (isset($_GET['sortDate']) && $_GET['sortDate'] == 'asc') ? 'selected' : ''; ?>>Oldest to Newest</option>
+                    <option value="desc" <?php echo (isset($_GET['sortDate']) && $_GET['sortDate'] == 'desc') ? 'selected' : ''; ?>>Newest to Oldest</option>
+                </select>
+            </div>
+        </form>
+
+        <?php
+        // Initialize search and sort parameters
+        $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+        $sortOrder = isset($_GET['sortDate']) ? $_GET['sortDate'] : 'desc';
+
+        // Fetch archived pets with search and sort functionality
+        $sqlArchived = "SELECT * FROM pet_list WHERE is_archived = 1";
+
+        // If search term is provided, add a WHERE clause
+        if ($searchTerm != '') {
+            $sqlArchived .= " AND (pet_name LIKE '%" . $conn->real_escape_string($searchTerm) . "%' OR pet_species LIKE '%" . $conn->real_escape_string($searchTerm) . "%')";
+        }
+
+        // Add order by clause for sorting
+        $sqlArchived .= " ORDER BY archived_date " . strtoupper($sortOrder);
+
+        $resultArchived = $conn->query($sqlArchived);
+
+        if ($resultArchived && $resultArchived->num_rows > 0) {
+            echo "<table class='data-table'>";
+            echo "<thead><tr><th>Pet Name</th><th>Pet Age</th><th>Pet Species</th><th>Date Archived</th><th>Action</th></tr></thead><tbody>";
+            while ($row = $resultArchived->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row['pet_name'] . "</td>";
+                echo "<td>" . $row['pet_age'] . "</td>";
+                echo "<td>" . $row['pet_species'] . "</td>";
+                echo "<td>" . $row['archived_date'] . "</td>";
+                echo "<td>";
+                echo "<button class='action-button unarchive' onclick='unarchivePet(" . $row['id'] . ")'><i class='fas fa-undo'></i> Undo</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+            echo "</tbody></table>";
+        } else {
+            echo "<p>No archived pets found.</p>";
+        }
+        ?>
     </div>
 </div>
 
