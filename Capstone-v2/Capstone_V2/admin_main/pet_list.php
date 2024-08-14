@@ -2,22 +2,31 @@
 include("header.php");
 include("../config/config.php");
 
-// Set default limit and get value from GET parameter if available
-$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 20;
+// Archive Pet Functionality
+if (isset($_GET['archive_id'])) {
+    $archive_id = intval($_GET['archive_id']);
+    $conn->query("UPDATE pet_list SET is_archived = 1, archived_date = NOW() WHERE id = $archive_id");
+    header("Location: pet_list.php");
+    exit();
+}
 
-// Get the current page number from the GET parameter, default to 1 if not set
+// Unarchive Pet Functionality
+if (isset($_GET['unarchive_id'])) {
+    $unarchive_id = intval($_GET['unarchive_id']);
+    $conn->query("UPDATE pet_list SET is_archived = 0, archived_date = NULL WHERE id = $unarchive_id");
+    header("Location: pet_list.php");
+    exit();
+}
+$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 20;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-// Calculate the starting record for the query
 $offset = ($page - 1) * $limit;
-
-// Get the total number of records for pagination
-$total_result = $conn->query("SELECT COUNT(*) AS total FROM pet_list");
+$total_result = $conn->query("SELECT COUNT(*) AS total FROM pet_list WHERE is_archived = 0");
 $total_rows = $total_result->fetch_assoc()['total'];
 $total_pages = ceil($total_rows / $limit);
 
 // Execute SQL query to retrieve pet list data with limit and offset
-$sql = "SELECT * FROM pet_list LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM pet_list WHERE is_archived = 0 LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 ?>
 <div class="table-container">
