@@ -23,6 +23,6 @@ if (isset($_POST['submit'])) {
             exit();
         }
     }
-    $conn->close();
 }
+$conn->close();
 ?>

@@ -768,7 +768,7 @@ div.containers div.image img{
 }
 
 .logout-button:hover {
-  background-color: #165a7b;
+  background-color: #7b1616;
 }
 
 .form-container {
@@ -811,6 +811,9 @@ div.containers div.image img{
 .cancel-button {
   background-color: #f44336;
   color: white;
+}
+.cancel-button:hover {
+  background-color: #7b1616;
 }
 
 .save-button {
