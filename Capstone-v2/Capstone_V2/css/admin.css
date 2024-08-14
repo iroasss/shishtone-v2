@@ -1,0 +1,634 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  --first-color: hsl(230, 75%, 56%);
+  --title-color: hsl(230, 75%, 15%);
+  --text-color: hsl(0, 0%, 0%);
+  --body-color: hsl(230, 100%, 98%);
+  --container-color: hsl(230, 100%, 97%);
+  --border-color: hsl(230, 25%, 80%);
+
+  /* ----main color palettes---- */
+  --lighter-blue: #cfecf7;
+  --light-blue: #a0d9ef;
+  --mid-blue: #62c1e5;
+  --dark-blue: #20a7db;
+  --darker-blue: #1c96c5;
+
+  /* ----text colors---- */
+  --light-gray: #F2F2F2;
+  --mid-gray: #a0a0a0;
+  --dark-gray: #333333;
+  --black: #000000;
+  --white: #FFFFFF;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Syne", sans-serif;
+  --body-fontpoppins: "Poppins", sans-serif;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1023px) {
+  :root {
+    --h2-font-size: 1.5rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-fontpoppins);
+}
+
+/* -------  Start of navbar  ------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--dark-blue);
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.navbar .menu a {
+  font-family: var(--body-fontpoppins);
+  font-size: medium;
+  text-decoration: none;
+  padding: 10px 15px;
+  color: var(--white);
+  position: relative;
+}
+
+.navbar .menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  left: 50%;
+  bottom: 0;
+  transition: width 0.3s, left 0.3s;
+}
+
+.navbar .menu a:active::after {
+  width: 100%;
+  left: 0;
+}
+
+.profile-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f8f8f8;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-icon:hover {
+  background-color: #e0e0e0;
+}
+
+
+.profile-icon i {
+  font-size: 24px;
+  color: var(--mid-blue);
+  transition: color 0.3s ease;
+}
+
+.profile-icon:hover i {
+  color: var(--darker-blue);
+}
+
+/* ------  End of the Navbar  ------ */
+
+/* -----  Start of DataTable  ----- */
+
+.table-container {
+  font-family: var(--body-fontpoppins);
+  width: 95%;
+  margin: 15px auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.entries-per-page {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.search-button i {
+  font-size: 16px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: var(--white);
+  text-align: center;
+  /* color: var(--white); */
+}
+
+.data-table tbody tr:nth-child(odd) {
+  background-color: var(--light-blue);
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: var(--white);
+}
+
+.view-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+/* Action button base style */
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Delete button style */
+.action-button.delete {
+  background-color: #dc3545;
+}
+
+.action-button.delete:hover {
+  background-color: #c82333;
+}
+
+/* Edit button style */
+.action-button.edit {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.action-button.edit:hover {
+  background-color: #e0a800;
+  color: #fff;
+}
+
+/* Icon style inside button */
+.action-button i {
+  margin-right: 5px;
+}
+
+/* Exis button style */
+.action-button.exis {
+  background-color: #6c757d;
+}
+
+.action-button.exis:hover {
+  background-color: #5a6268;
+}
+/* VIEW MORE button style */
+.action-button.view-more {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.action-button.view-more:hover {
+  background-color: #138496;
+}
+
+/* Archive button style */
+.action-button.archive {
+  background-color: #f44336;
+  color: white;
+}
+
+.action-button.archive:hover {
+  background-color: #d32f2f;
+}
+/* EDIT FOR ADDPET button style */
+.action-button.edits {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.action-button.edits:hover {
+  background-color: #45a049;
+}
+/* Check button style */
+.action-button.check {
+  background-color: #28a745;
+}
+
+.action-button.check:hover {
+  background-color: #218838;
+}
+
+.action-button.add {
+  background-color: #28a745;
+  /* Green background */
+}
+
+.action-button.add:hover {
+  background-color: #218838;
+  /* Darker green on hover */
+}
+
+/* ------  End of the DataTable  ------ */
+
+/* ------  Start of the Profile  ------ */
+.form-container {
+  margin-top: 50px;
+  margin-left: 600px;
+  width: 50%;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form fieldset {
+  border: none;
+}
+
+form legend {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-row label {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.form-row input {
+  flex: 2;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.cancel-button {
+  background-color: #fff;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.cancel-button:hover {
+  background-color: #e0e0e0;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+/* ------  End of the Profile  ------ */
+
+/* -----  Start of Pet_Update  ----- */
+.allcont {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.profile-container {
+  width: 300px;
+  /* Adjust width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-left: 15px;
+  /* margin-left: 750px; */
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-icon {
+  font-size: 50px;
+  margin-right: 10px;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.profile-info p {
+  margin: 0;
+  color: #666;
+}
+
+.profile-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.image-box {
+  background-color: #ccc;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #999;
+  font-size: 24px;
+  height: 100px;
+  /* Adjust height as needed */
+}
+
+.profile-description {
+  margin-bottom: 20px;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.update-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: var(--dark-blue);
+  color: #fff;
+  cursor: pointer;
+}
+
+.update-button:hover {
+  background-color: var(--mid-blue);
+}
+
+/* ----  End of the Pet_Update  ---- */
+
+
+/* ----  Start of the Modal for add pet in facilitator  ---- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content textarea,
+.modal-content input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content textarea {
+  height: 100px;
+  /* Fixed height for textareas */
+  resize: none;
+  /* Prevent resizing */
+}
+
+.save-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+/* ----  START OF PAGINATION  ---- */
+
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination a {
+  padding: 10px;
+  margin: 0 5px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #666666;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+}
+
+.pagination .current {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* ----  END OF PAGINATION  ---- */
+
+/* ----  START OF ENTRIES  ---- */
+
+.entries-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.entries-label {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.entries-select {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.entries-select:focus {
+  border-color: #007bff;
+}
+
+/* ----  END OF ENTRIES  ---- */
+
+/* ---- START OF Exit button FOR MODAL IN VIEW MORE  ---- */
+.exit-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 20px auto 0;
+  transition: background-color 0.3s ease;
+}
+
+.exit-button:hover {
+  background-color: #d32f2f;
+}
+
+/* ---- END OF Exit button FOR MODAL IN VIEW MORE  ---- */
