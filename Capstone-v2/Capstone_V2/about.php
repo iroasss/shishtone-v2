@@ -39,7 +39,7 @@ include("config/config.php");
       <div class="content">
          <h3>why choose us?</h3>
          <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente saepe accusantium doloribus sed, vitae quas. 
-            Placeat mollitia quo tempore omnis quae exercitationem adipisci enim dicta, sint vel eligendi nulla distinctio!</p>
+            Placeat mollitia quo tempore omnis quae exercitationem adipisci enim dicta, sint vel eligendi nulla distinctio</p>
          <a href="contact.php" class="button">contact us</a>
       </div>
 
