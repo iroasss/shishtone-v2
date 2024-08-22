@@ -39,7 +39,7 @@ include("config/config.php");
       <br>
 
 
-      <form action="report_cruelty.php" method="POST">
+      <form action="../backend/report_cruelty.php" method="POST">
         <div class="form-group">
           <label for="first-name">The issue I'm reporting involves: <span class="required">*</span></label>
           <label for="first-name">Domestic or farmed animals or wildlife <span></span></span></label>
@@ -108,7 +108,7 @@ include("config/config.php");
             </div>
           <div class="form-buttons">
             <button type="button" class="cancel-button">Cancel</button>
-            <button type="button" class="next-button">Submit</button>
+            <button type="submit" class="next-button">Submit</button>
           </div>
       </form>
     </div>

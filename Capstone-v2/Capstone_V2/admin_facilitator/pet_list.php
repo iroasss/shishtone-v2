@@ -123,7 +123,7 @@ $result = $conn->query($sql);
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Add New Pet</h2>
-        <form action="../backend/add_pet.php" method="post" enctype="multipart/form-data">
+        <form action="../Capstone-v2/Capstone_V2/add_pet.php" method="post" enctype="multipart/form-data">
             <label for="petName">Pet Name</label>
             <input type="text" id="petName" name="petName" required pattern="[A-Za-z\s]+" title="Pet name should only contain letters and spaces.">
 
