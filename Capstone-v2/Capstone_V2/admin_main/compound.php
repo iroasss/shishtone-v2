@@ -12,7 +12,7 @@ include("header.php");
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Search">
             <button class="search-button"><i class="fa fa-search"></i></button>
-            <button class="action-button add" onclick="openModal()"><i class="fa fa-plus"></i> Add Compound</button>
+            <!-- <button class="action-button add" onclick="openModal()"><i class="fa fa-plus"></i> Add Compound</button> -->
         </div>
     </div>
     <table class="data-table">

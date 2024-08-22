@@ -2219,3 +2219,16 @@ textarea {
 
 
 /* ---- End of Adoption Process (form) ---- */
+
+/* ---- Start Reports ---- */
+#describe {
+    height: 150px;
+    width: 100%; 
+    resize: none;
+}
+#descrip{
+    height: 150px;
+    width: 100%;
+    resize: none;
+}
+/* ---- End of Report ---- */

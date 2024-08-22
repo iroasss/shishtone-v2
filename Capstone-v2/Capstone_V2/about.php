@@ -25,7 +25,7 @@ include("config/config.php");
 
 
 <div class="heading">
-   <h3>About Him</h3>
+   <h3>About Us</h3>
 </div>
 
 <section class="about">
