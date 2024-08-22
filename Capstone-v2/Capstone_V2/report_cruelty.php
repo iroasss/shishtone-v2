@@ -47,12 +47,12 @@ include("config/config.php");
 
         <div class="form-container">
           <div class="form-group">
-            <label for="first-name">First Name <span class="required">*</span></label>
-            <input type="text" id="first-name" name="first-name" required>
+            <label for="first_name">First Name <span class="required">*</span></label>
+            <input type="text" id="first_name" name="first_name" required>
           </div>
           <div class="form-group">
-            <label for="last-name">Last Name <span class="required">*</span></label>
-            <input type="text" id="last-name" name="last-name" required>
+            <label for="last_name">Last Name <span class="required">*</span></label>
+            <input type="text" id="last_name" name="last_name" required>
           </div>
           <div class="form-group">
             <label for="address">Address <span class="required">*</span></label>
@@ -63,8 +63,8 @@ include("config/config.php");
             <input type="email" id="email" name="email" required>
           </div>
           <div class="form-group">
-            <label for="animal-location">Address Where Animal is Located <span class="required">*</span></label>
-            <input type="text" id="animal-location" name="animal-location" required>
+            <label for="animal_location">Address Where Animal is Located <span class="required">*</span></label>
+            <input type="text" id="animal_location" name="animal_location" required>
           </div>
           <div class="form-group">
             <label for="subject">Subject Line of E-mail</label>
@@ -102,15 +102,17 @@ include("config/config.php");
           <div class="form-group">
             <label for="subject"></label>
           </div>
-
-
-
+          <div class="form-group" style="display: none;">
+              <label for="catego"></label>
+              <input type="hidden" id="catego" name="catego" value="Animal Cruelty" required>
+            </div>
           <div class="form-buttons">
             <button type="button" class="cancel-button">Cancel</button>
             <button type="button" class="next-button">Submit</button>
           </div>
       </form>
     </div>
+  </div>
   </div>
 
 
