@@ -58,8 +58,8 @@ include("config/config.php");
                         <button class="learn-more-btn" onclick="window.location.href='faqs.php#laws'">Learn More</button>
                   </div>
                   <div class="buttons">
-                        <button onclick="window.location.href='#'">Report Cruelty</button>
-                        <button onclick="window.location.href='#'">Lost & Found</button>
+                        <button onclick="window.location.href='report_cruelty.php'">Report Cruelty</button>
+                        <button onclick="window.location.href='report_lost.php'">Lost & Found</button>
                   </div>
             </div>
       </div>
