@@ -3,7 +3,7 @@ include("header.php");
 include("config/config.php");
 ?>
 <!DOCTYPE html>
-< lang="en">
+<html lang="en">
 
   <head>
     <meta charset="UTF-8">
@@ -24,13 +24,12 @@ include("config/config.php");
     <?php include("header.php"); ?>
 
 
-    <div class="adoption-container">
+    <div class="lost-container">
       <h2>ANIMAL LOST & FOUND REPORT</h2>
       <br>
       <div class="form-section active" id="step1">
         <p class="required-fields">Fields with an asterisk (*) are required.</p>
         <br>
-
 
         <form action="submit_application.php" method="POST">
           <div class="form-container">
@@ -74,8 +73,7 @@ include("config/config.php");
             <div class="form-group">
               <label for="descrip">Pet Description <span class="required">*</span></label>
               <textarea id="descrip" name="descrip" required style="height: 120px;" onclick="deleteText()">
-Please be as detailed as possible, especially if reporting a lost pet.
-</textarea>
+                Please be as detailed as possible, especially if reporting a lost pet.</textarea>
             </div>
             <div class="form-group">
               <label for="subject"></label>
@@ -103,9 +101,7 @@ Please be as detailed as possible, especially if reporting a lost pet.
             <div class="form-group">
               <label for="subject"></label>
             </div>
-
-
-
+            
             <div class="form-buttons">
               <button type="button" class="cancel-button">Cancel</button>
               <button type="button" class="next-button">Submit</button>
@@ -114,16 +110,16 @@ Please be as detailed as possible, especially if reporting a lost pet.
       </div>
     </div>
     </div>
-    <script>
-      function deleteText() {
-        var textarea = document.getElementById('descrip');
-        textarea.value = '';
-        // Optionally, you can remove the onclick event after it fires once
-        textarea.onclick = null;
-      }
-    </script>
-    <?php include("footer.php"); ?>
 
-    </body>
+<script>
+  function deleteText() {
+    var textarea = document.getElementById('descrip');
+    textarea.value = '';
+    textarea.onclick = null;
+  }
+</script>
+    
+<?php include("footer.php"); ?>
 
-    </html>
+</body>
+</html>

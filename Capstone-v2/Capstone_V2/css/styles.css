@@ -2204,23 +2204,29 @@ textarea {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---- End of Adoption Process (form) ---- */
 
-/* ---- Start Reports ---- */
+
+/* ---- Report Cruelty ---- */
+
+.cruelty-container {
+    width: 100%;
+    max-width: 85%;
+    margin: 70px auto 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.cruelty-container h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
 #describe {
     height: 150px;
     width: 100%; 
@@ -2231,4 +2237,31 @@ textarea {
     width: 100%;
     resize: none;
 }
-/* ---- End of Report ---- */
+
+
+/* ---- End of Report Cruelty ---- */
+
+
+/* ---- Lost & Found ---- */
+
+.lost-container {
+    width: 100%;
+    max-width: 85%;
+    margin: 70px auto 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.lost-container h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
+
+/* ---- End of Lost & Found ---- */

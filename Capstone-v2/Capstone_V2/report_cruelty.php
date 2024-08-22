@@ -24,7 +24,7 @@ include("config/config.php");
   <?php include("header.php"); ?>
 
 
-  <div class="adoption-container">
+  <div class="cruelty-container">
     <h2>ANIMAL CRUELTY REPORT</h2>
     <br>
     <div class="form-section active" id="step1">
@@ -38,8 +38,7 @@ include("config/config.php");
       <p class="required-fields">Fields with an asterisk (*) are required.</p>
       <br>
 
-
-      <form action="../backend/report_cruelty.php" method="POST">
+      <form action="report_cruelty.php" method="POST">
         <div class="form-group">
           <label for="first-name">The issue I'm reporting involves: <span class="required">*</span></label>
           <label for="first-name">Domestic or farmed animals or wildlife <span></span></span></label>
@@ -108,16 +107,15 @@ include("config/config.php");
             </div>
           <div class="form-buttons">
             <button type="button" class="cancel-button">Cancel</button>
-            <button type="submit" class="next-button">Submit</button>
+            <button type="button" class="next-button">Submit</button>
           </div>
       </form>
     </div>
-  </div>
+   </div>
   </div>
 
 
   <?php include("footer.php"); ?>
 
   </body>
-
 </html>
